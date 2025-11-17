@@ -1354,11 +1354,11 @@ function initializeEventListeners() {
       btn.addEventListener("click", closeShareModal);
     });
 
-// Share option buttons - SIMPLIFIED
-document.getElementById('shareImageBtn')?.addEventListener('click', showImageOptions);
-document.getElementById('shareTextBtn')?.addEventListener('click', shareAsText);
-document.getElementById('copyTextBtn')?.addEventListener('click', copyVerseToClipboard);
-document.getElementById('closeModalBtn')?.addEventListener('click', closeShareModal);
+    // Share option buttons - SIMPLIFIED
+    document.getElementById('shareImageBtn')?.addEventListener('click', showImageOptions);
+    document.getElementById('shareTextBtn')?.addEventListener('click', shareAsText);
+    document.getElementById('copyTextBtn')?.addEventListener('click', copyVerseToClipboard);
+    document.getElementById('closeModalBtn')?.addEventListener('click', closeShareModal);
 
     // Theme selection
     const themeOptions = document.querySelectorAll(".theme-option");
@@ -1369,10 +1369,10 @@ document.getElementById('closeModalBtn')?.addEventListener('click', closeShareMo
       });
     });
 
-// Image action buttons
-document.getElementById('previewImageBtn')?.addEventListener('click', previewImage);
-document.getElementById('downloadImageBtn')?.addEventListener('click', downloadImage);
-document.getElementById('shareImageFinalBtn')?.addEventListener('click', shareImage);
+    // Image action buttons
+    document.getElementById('previewImageBtn')?.addEventListener('click', previewImage);
+    document.getElementById('downloadImageBtn')?.addEventListener('click', downloadImage);
+    document.getElementById('shareImageFinalBtn')?.addEventListener('click', shareImage);
 
     // Close modal when clicking outside
     const modals = document.querySelectorAll(".modal");
@@ -1384,119 +1384,6 @@ document.getElementById('shareImageFinalBtn')?.addEventListener('click', shareIm
       });
     });
 
-// -------------------- Share as Text Function --------------------
-function shareAsText() {
-  try {
-    if (!currentVerse) {
-      showSuccessMessage("No verse to share");
-      return;
-    }
-
-    // Create text preview modal
-    const textPreviewHTML = `
-      <div class="modal" id="textPreviewModal">
-        <div class="modal-content" style="max-width: 500px; background: var(--card-bg); color: var(--text-primary);">
-          <div class="modal-header">
-            <h2 style="color: white;">Share as Text</h2>
-            <button class="close-btn">&times;</button>
-          </div>
-          <div class="text-preview-container" style="padding: 20px;">
-            <div class="preview-text" style="background: var(--bg-secondary); padding: 15px; border-radius: 8px; margin-bottom: 15px; font-size: 1rem; line-height: 1.5; color: var(--text-primary); border: 1px solid var(--border-color);">
-              ${currentVerse}
-            </div>
-            <div class="attribution-option" style="margin: 15px 0; padding: 12px; background: var(--bg-secondary); border-radius: 8px; border: 1px solid var(--border-color);">
-              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; color: var(--text-primary);">
-                <input type="checkbox" id="includeTextAttribution" checked>
-                Include attribution link
-              </label>
-            </div>
-            <div class="action-buttons" style="display: flex; gap: 10px;">
-              <button id="cancelTextShare" class="action-btn secondary" style="flex: 1; background: var(--bg-secondary); color: var(--text-primary); border: 1px solid var(--border-color);">Cancel</button>
-              <button id="confirmTextShare" class="action-btn primary" style="flex: 1; background: var(--gradient-primary); color: white;">Share Text</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    `;
-
-    // Add modal to page
-    document.body.insertAdjacentHTML('beforeend', textPreviewHTML);
-    
-    const modal = document.getElementById('textPreviewModal');
-    const closeBtn = modal.querySelector('.close-btn');
-    const cancelBtn = document.getElementById('cancelTextShare');
-    const confirmBtn = document.getElementById('confirmTextShare');
-
-    // Show modal
-    modal.style.display = 'block';
-
-    // Close modal function
-    function closeTextModal() {
-      modal.remove();
-    }
-
-    // Event listeners
-    closeBtn.addEventListener('click', closeTextModal);
-    cancelBtn.addEventListener('click', closeTextModal);
-    
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) closeTextModal();
-    });
-
-    // Share text function
-    confirmBtn.addEventListener('click', () => {
-      const includeAttribution = document.getElementById('includeTextAttribution').checked;
-      
-      let shareText = currentVerse;
-      if (includeAttribution) {
-        shareText += `\n\nShared via Greeter Bible App • https://mashifmj-prog.github.io/greeter-bible-dev3-03/`;
-      }
-
-      // Use native sharing if available
-      if (navigator.share) {
-        navigator.share({
-          title: 'Bible Verse',
-          text: shareText
-        }).then(() => {
-          showSuccessMessage("Verse shared successfully! 📤");
-          closeTextModal();
-          closeShareModal();
-        }).catch(err => {
-          // Fallback to clipboard
-          fallbackTextShare(shareText);
-        });
-      } else {
-        // Fallback to clipboard
-        fallbackTextShare(shareText);
-      }
-    });
-
-  } catch (e) {
-    console.error("Error in share as text:", e);
-    showSuccessMessage("Error sharing text");
-  }
-}
-
-// Fallback for text sharing
-function fallbackTextShare(text) {
-  navigator.clipboard.writeText(text).then(() => {
-    showSuccessMessage("Verse copied to clipboard! 📋\nYou can now paste it anywhere.");
-    document.querySelector('#textPreviewModal')?.remove();
-    closeShareModal();
-  }).catch(err => {
-    // Ultimate fallback
-    const textArea = document.createElement('textarea');
-    textArea.value = text;
-    document.body.appendChild(textArea);
-    textArea.select();
-    document.execCommand('copy');
-    document.body.removeChild(textArea);
-    showSuccessMessage("Verse copied to clipboard! 📋\nYou can now paste it anywhere.");
-    document.querySelector('#textPreviewModal')?.remove();
-    closeShareModal();
-  });
-}
-    
     // ===== NEW: THEME TOGGLE BUTTON =====
     const themeToggleBtn = document.createElement('button');
     themeToggleBtn.className = 'control-btn theme-btn';
