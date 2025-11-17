@@ -99,21 +99,41 @@
           </button>
         </div>
 
-        <!-- Prayer Journal -->
-        <div id="prayer-tab" class="journal-tab-content active">
-          <!-- ... prayer journal content ... -->
-        </div>
+<!-- Prayer Journal -->
+<div id="prayer-tab" class="journal-tab-content active">
+  <div class="journal-input-container">
+    <textarea id="prayerEntry" placeholder="Write your prayers and reflections here... Inspired by today's verse"></textarea>
+    <button id="savePrayer" class="save-btn">
+      <span class="btn-icon">💾</span>
+      <span class="btn-text">Save Prayer</span>
+    </button>
+  </div>
+  <div id="prayerHistory" class="journal-history"></div>
+</div>
 
-        <!-- Gratitude Log -->
-        <div id="gratitude-tab" class="journal-tab-content">
-          <!-- ... gratitude content ... -->
-        </div>
+<!-- Gratitude Log -->
+<div id="gratitude-tab" class="journal-tab-content">
+  <div class="journal-input-container">
+    <textarea id="gratitudeEntry" placeholder="What are you thankful for today?"></textarea>
+    <button id="saveGratitude" class="save-btn">
+      <span class="btn-icon">💾</span>
+      <span class="btn-text">Save Gratitude</span>
+    </button>
+  </div>
+  <div id="gratitudeHistory" class="journal-history"></div>
+</div>
 
-        <!-- Prayer Requests -->
-        <div id="requests-tab" class="journal-tab-content">
-          <!-- ... prayer requests content ... -->
-        </div>
-      </section>
+<!-- Prayer Requests -->
+<div id="requests-tab" class="journal-tab-content">
+  <div class="journal-input-container">
+    <textarea id="prayerRequest" placeholder="Enter your prayer requests..."></textarea>
+    <button id="addRequest" class="save-btn">
+      <span class="btn-icon">➕</span>
+      <span class="btn-text">Add Request</span>
+    </button>
+  </div>
+  <div id="requestsList" class="requests-list"></div>
+</div>
 
     <!-- Favorites Section -->
     <section class="favorites-section">
