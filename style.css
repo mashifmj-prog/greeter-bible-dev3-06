@@ -1272,3 +1272,37 @@ button:focus, input:focus, textarea:focus, select:focus {
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
+
+/* ===== CRITICAL FIXES - ADD TO EXISTING CSS ===== */
+
+/* Force Share Text to Always Be Visible */
+.share-btn .btn-text {
+  display: inline-block !important;
+}
+
+/* Enhanced Text Contrast */
+.greeting-text {
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.3) !important;
+}
+
+.verse-main-text {
+  font-weight: 500 !important;
+}
+
+/* Better Background Contrast */
+.app-background {
+  opacity: 0.9;
+}
+
+[data-theme="light"] .app-background {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+[data-theme="dark"] .app-background {
+  background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+}
+
+/* Enhanced Container Contrast */
+.container {
+  border: 2px solid var(--border-color);
+}
