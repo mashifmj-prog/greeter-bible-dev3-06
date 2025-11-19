@@ -1328,7 +1328,7 @@ function initializeEventListeners() {
     // Category filter
     document.getElementById('verseCategory')?.addEventListener('change', filterByCategory);
     
-    // Journal functionality
+    // ===== JOURNAL FUNCTIONALITY - ADDED =====
     document.getElementById('savePrayer')?.addEventListener('click', savePrayerEntry);
     document.getElementById('saveGratitude')?.addEventListener('click', saveGratitudeEntry);
     document.getElementById('addRequest')?.addEventListener('click', addPrayerRequest);
@@ -1354,7 +1354,7 @@ function initializeEventListeners() {
       btn.addEventListener("click", closeShareModal);
     });
 
-    // Share option buttons - SIMPLIFIED
+    // Share option buttons
     document.getElementById('shareImageBtn')?.addEventListener('click', showImageOptions);
     document.getElementById('shareTextBtn')?.addEventListener('click', shareAsText);
     document.getElementById('copyTextBtn')?.addEventListener('click', copyVerseToClipboard);
@@ -1384,7 +1384,7 @@ function initializeEventListeners() {
       });
     });
 
-    // ===== NEW: THEME TOGGLE BUTTON =====
+    // ===== THEME TOGGLE BUTTON =====
     const themeToggleBtn = document.createElement('button');
     themeToggleBtn.className = 'control-btn theme-btn';
     themeToggleBtn.id = 'themeToggle';
