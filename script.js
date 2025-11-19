@@ -1296,6 +1296,8 @@ function showSwipeFeedback(message) {
 // -------------------- Event Listeners --------------------
 function initializeEventListeners() {
   try {
+    console.log("Initializing event listeners...");
+
     // Name input listener
     const nameInput = document.getElementById("nameInput");
     if (nameInput) {
@@ -1320,24 +1322,66 @@ function initializeEventListeners() {
     }
 
     // Control buttons
-    document.getElementById('shareButton')?.addEventListener('click', openShareModal);
-    document.getElementById('favoriteButton')?.addEventListener('click', toggleFavorite);
-    document.getElementById('nextVerseButton')?.addEventListener('click', nextVerse);
-    document.getElementById('searchButton')?.addEventListener('click', openSearchModal);
+    const shareButton = document.getElementById('shareButton');
+    if (shareButton) {
+      shareButton.addEventListener('click', openShareModal);
+      console.log("Share button listener added");
+    }
+
+    const favoriteButton = document.getElementById('favoriteButton');
+    if (favoriteButton) {
+      favoriteButton.addEventListener('click', toggleFavorite);
+      console.log("Favorite button listener added");
+    }
+
+    const nextVerseButton = document.getElementById('nextVerseButton');
+    if (nextVerseButton) {
+      nextVerseButton.addEventListener('click', nextVerse);
+      console.log("Next verse button listener added");
+    }
+
+    const searchButton = document.getElementById('searchButton');
+    if (searchButton) {
+      searchButton.addEventListener('click', openSearchModal);
+      console.log("Search button listener added");
+    }
     
     // Category filter
-    document.getElementById('verseCategory')?.addEventListener('change', filterByCategory);
+    const categorySelect = document.getElementById('verseCategory');
+    if (categorySelect) {
+      categorySelect.addEventListener('change', filterByCategory);
+      console.log("Category filter listener added");
+    }
     
-    // ===== JOURNAL FUNCTIONALITY - ADDED =====
-    document.getElementById('savePrayer')?.addEventListener('click', savePrayerEntry);
-    document.getElementById('saveGratitude')?.addEventListener('click', saveGratitudeEntry);
-    document.getElementById('addRequest')?.addEventListener('click', addPrayerRequest);
+    // ===== JOURNAL FUNCTIONALITY =====
+    const savePrayerBtn = document.getElementById('savePrayer');
+    if (savePrayerBtn) {
+      savePrayerBtn.addEventListener('click', savePrayerEntry);
+      console.log("Save prayer button listener added");
+    }
+
+    const saveGratitudeBtn = document.getElementById('saveGratitude');
+    if (saveGratitudeBtn) {
+      saveGratitudeBtn.addEventListener('click', saveGratitudeEntry);
+      console.log("Save gratitude button listener added");
+    }
+
+    const addRequestBtn = document.getElementById('addRequest');
+    if (addRequestBtn) {
+      addRequestBtn.addEventListener('click', addPrayerRequest);
+      console.log("Add request button listener added");
+    }
     
     // Clear favorites
-    document.getElementById('clearFavorites')?.addEventListener('click', clearAllFavorites);
+    const clearFavoritesBtn = document.getElementById('clearFavorites');
+    if (clearFavoritesBtn) {
+      clearFavoritesBtn.addEventListener('click', clearAllFavorites);
+      console.log("Clear favorites listener added");
+    }
     
     // Tab management
     setupJournalTabs();
+    console.log("Journal tabs setup");
     
     // Search functionality
     const searchInput = document.getElementById("searchInput");
@@ -1346,6 +1390,7 @@ function initializeEventListeners() {
         const results = searchVerses(e.target.value);
         displaySearchResults(results);
       });
+      console.log("Search input listener added");
     }
 
     // Modal close buttons
@@ -1353,12 +1398,32 @@ function initializeEventListeners() {
     closeButtons.forEach(btn => {
       btn.addEventListener("click", closeShareModal);
     });
+    console.log("Modal close listeners added");
 
     // Share option buttons
-    document.getElementById('shareImageBtn')?.addEventListener('click', showImageOptions);
-    document.getElementById('shareTextBtn')?.addEventListener('click', shareAsText);
-    document.getElementById('copyTextBtn')?.addEventListener('click', copyVerseToClipboard);
-    document.getElementById('closeModalBtn')?.addEventListener('click', closeShareModal);
+    const shareImageBtn = document.getElementById('shareImageBtn');
+    if (shareImageBtn) {
+      shareImageBtn.addEventListener('click', showImageOptions);
+      console.log("Share image button listener added");
+    }
+
+    const shareTextBtn = document.getElementById('shareTextBtn');
+    if (shareTextBtn) {
+      shareTextBtn.addEventListener('click', shareAsText);
+      console.log("Share text button listener added");
+    }
+
+    const copyTextBtn = document.getElementById('copyTextBtn');
+    if (copyTextBtn) {
+      copyTextBtn.addEventListener('click', copyVerseToClipboard);
+      console.log("Copy text button listener added");
+    }
+
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    if (closeModalBtn) {
+      closeModalBtn.addEventListener('click', closeShareModal);
+      console.log("Close modal button listener added");
+    }
 
     // Theme selection
     const themeOptions = document.querySelectorAll(".theme-option");
@@ -1368,11 +1433,26 @@ function initializeEventListeners() {
         option.classList.add("active");
       });
     });
+    console.log("Theme option listeners added");
 
     // Image action buttons
-    document.getElementById('previewImageBtn')?.addEventListener('click', previewImage);
-    document.getElementById('downloadImageBtn')?.addEventListener('click', downloadImage);
-    document.getElementById('shareImageFinalBtn')?.addEventListener('click', shareImage);
+    const previewImageBtn = document.getElementById('previewImageBtn');
+    if (previewImageBtn) {
+      previewImageBtn.addEventListener('click', previewImage);
+      console.log("Preview image button listener added");
+    }
+
+    const downloadImageBtn = document.getElementById('downloadImageBtn');
+    if (downloadImageBtn) {
+      downloadImageBtn.addEventListener('click', downloadImage);
+      console.log("Download image button listener added");
+    }
+
+    const shareImageFinalBtn = document.getElementById('shareImageFinalBtn');
+    if (shareImageFinalBtn) {
+      shareImageFinalBtn.addEventListener('click', shareImage);
+      console.log("Share image final button listener added");
+    }
 
     // Close modal when clicking outside
     const modals = document.querySelectorAll(".modal");
@@ -1383,8 +1463,10 @@ function initializeEventListeners() {
         }
       });
     });
+    console.log("Modal outside click listeners added");
 
     // ===== THEME TOGGLE BUTTON =====
+    console.log("Creating theme toggle button...");
     const themeToggleBtn = document.createElement('button');
     themeToggleBtn.className = 'control-btn theme-btn';
     themeToggleBtn.id = 'themeToggle';
@@ -1394,13 +1476,16 @@ function initializeEventListeners() {
     
     // Insert theme toggle after search button in controls container
     const controlsContainer = document.querySelector('.controls-container');
-    const searchButton = document.getElementById('searchButton');
-    if (controlsContainer && searchButton) {
+    const searchBtn = document.getElementById('searchButton');
+    if (controlsContainer && searchBtn) {
       // Create a wrapper div to maintain proper spacing
       const themeWrapper = document.createElement('div');
       themeWrapper.className = 'theme-toggle-wrapper';
       themeWrapper.appendChild(themeToggleBtn);
       controlsContainer.appendChild(themeWrapper);
+      console.log("Theme toggle button added to controls");
+    } else {
+      console.error("Could not find controls container or search button");
     }
 
     // Add keyboard shortcuts
@@ -1421,6 +1506,9 @@ function initializeEventListeners() {
         toggleTheme();
       }
     });
+    console.log("Keyboard shortcuts added");
+
+    console.log("All event listeners initialized successfully!");
 
   } catch (e) {
     console.error("Error initializing event listeners:", e);
