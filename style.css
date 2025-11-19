@@ -1306,3 +1306,39 @@ button:focus, input:focus, textarea:focus, select:focus {
 .container {
   border: 2px solid var(--border-color);
 }
+
+/* ===== CRITICAL FIXES ===== */
+
+/* Force Share Text to Always Be Visible */
+.share-btn .btn-text {
+  display: inline-block !important;
+}
+
+/* Theme Toggle Button Styling */
+.theme-toggle-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.theme-btn {
+  background: var(--bg-secondary) !important;
+  color: var(--text-primary) !important;
+  padding: var(--space-md) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: var(--radius-lg) !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  font-size: 1.2rem !important;
+  min-width: 50px !important;
+  height: 50px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.theme-btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: var(--shadow-md) !important;
+  background: var(--bg-primary) !important;
+}
